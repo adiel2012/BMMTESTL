@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.DGV_Results = new System.Windows.Forms.DataGridView();
             this.DGV_Repository = new System.Windows.Forms.DataGridView();
             this.DGV_Comparation = new System.Windows.Forms.DataGridView();
             this.btn_result_hash = new System.Windows.Forms.Button();
@@ -37,9 +36,10 @@
             this.btn_result_compare = new System.Windows.Forms.Button();
             this.lbl_result = new System.Windows.Forms.Label();
             this.lbl_repository = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Results)).BeginInit();
+            this.DGV_Results = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Comparation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Results)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -50,28 +50,21 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // DGV_Results
-            // 
-            this.DGV_Results.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Results.Location = new System.Drawing.Point(28, 53);
-            this.DGV_Results.Name = "DGV_Results";
-            this.DGV_Results.Size = new System.Drawing.Size(471, 150);
-            this.DGV_Results.TabIndex = 3;
-            // 
             // DGV_Repository
             // 
             this.DGV_Repository.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_Repository.Location = new System.Drawing.Point(529, 53);
             this.DGV_Repository.Name = "DGV_Repository";
-            this.DGV_Repository.Size = new System.Drawing.Size(606, 150);
+            this.DGV_Repository.ReadOnly = true;
+            this.DGV_Repository.Size = new System.Drawing.Size(606, 292);
             this.DGV_Repository.TabIndex = 4;
             // 
             // DGV_Comparation
             // 
             this.DGV_Comparation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Comparation.Location = new System.Drawing.Point(165, 236);
+            this.DGV_Comparation.Location = new System.Drawing.Point(1094, 369);
             this.DGV_Comparation.Name = "DGV_Comparation";
-            this.DGV_Comparation.Size = new System.Drawing.Size(665, 150);
+            this.DGV_Comparation.Size = new System.Drawing.Size(51, 32);
             this.DGV_Comparation.TabIndex = 5;
             // 
             // btn_result_hash
@@ -94,7 +87,8 @@
             // 
             // btn_result_compare
             // 
-            this.btn_result_compare.Location = new System.Drawing.Point(463, 207);
+            this.btn_result_compare.Enabled = false;
+            this.btn_result_compare.Location = new System.Drawing.Point(497, 369);
             this.btn_result_compare.Name = "btn_result_compare";
             this.btn_result_compare.Size = new System.Drawing.Size(75, 23);
             this.btn_result_compare.TabIndex = 8;
@@ -117,6 +111,15 @@
             this.lbl_repository.Size = new System.Drawing.Size(0, 13);
             this.lbl_repository.TabIndex = 10;
             // 
+            // DGV_Results
+            // 
+            this.DGV_Results.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_Results.Location = new System.Drawing.Point(28, 53);
+            this.DGV_Results.Name = "DGV_Results";
+            this.DGV_Results.ReadOnly = true;
+            this.DGV_Results.Size = new System.Drawing.Size(471, 292);
+            this.DGV_Results.TabIndex = 3;
+            // 
             // MainFrameMDIParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -134,9 +137,9 @@
             this.Name = "MainFrameMDIParent";
             this.Text = "Hash Enterprise LLC";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Results)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Comparation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Results)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,7 +148,6 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.DataGridView DGV_Results;
         private System.Windows.Forms.DataGridView DGV_Repository;
         private System.Windows.Forms.DataGridView DGV_Comparation;
         public System.Windows.Forms.Button btn_result_hash;
@@ -153,5 +155,6 @@
         public System.Windows.Forms.Button btn_result_compare;
         public System.Windows.Forms.Label lbl_result;
         public System.Windows.Forms.Label lbl_repository;
+        public System.Windows.Forms.DataGridView DGV_Results;
     }
 }

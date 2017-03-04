@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BMMTestLabs.Model;
 using BMMTestLabs.View;
 
 namespace BMMTestLabs.Controller
@@ -25,6 +26,27 @@ namespace BMMTestLabs.Controller
             parentform.fill_HashResults(repo.getAll());
             parentform.lbl_result.Text = filename;
 
+        }
+
+        internal global::BMMTestLabs.Program.Match_result[] compare(HashRepositoryController ctrl_repo)
+        {
+
+             HashResultRecord[] data =  repo.getAll();
+            global::BMMTestLabs.Program.Match_result[] res = new Program.Match_result[data.Length];
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (i%2==0)
+                {
+                    res[i] = Program.Match_result.MATCH;
+                }
+                else
+                {
+                    res[i] = Program.Match_result.NO_MATCH;
+                }
+                if(i == 3)
+                    res[i] = Program.Match_result.NO_FILE;
+            }
+            return res;
         }
     }
 
