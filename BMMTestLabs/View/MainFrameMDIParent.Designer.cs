@@ -37,6 +37,8 @@
             this.lbl_result = new System.Windows.Forms.Label();
             this.lbl_repository = new System.Windows.Forms.Label();
             this.DGV_Results = new System.Windows.Forms.DataGridView();
+            this.btn_export = new System.Windows.Forms.Button();
+            this.saveFileDialog_export = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Comparation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Results)).BeginInit();
@@ -88,11 +90,11 @@
             // btn_result_compare
             // 
             this.btn_result_compare.Enabled = false;
-            this.btn_result_compare.Location = new System.Drawing.Point(497, 369);
+            this.btn_result_compare.Location = new System.Drawing.Point(572, 184);
             this.btn_result_compare.Name = "btn_result_compare";
             this.btn_result_compare.Size = new System.Drawing.Size(75, 23);
             this.btn_result_compare.TabIndex = 8;
-            this.btn_result_compare.Text = "button3";
+            this.btn_result_compare.Text = "Validate";
             this.btn_result_compare.UseVisualStyleBackColor = true;
             // 
             // lbl_result
@@ -117,14 +119,24 @@
             this.DGV_Results.Location = new System.Drawing.Point(28, 53);
             this.DGV_Results.Name = "DGV_Results";
             this.DGV_Results.ReadOnly = true;
-            this.DGV_Results.Size = new System.Drawing.Size(560, 292);
+            this.DGV_Results.Size = new System.Drawing.Size(529, 292);
             this.DGV_Results.TabIndex = 3;
+            // 
+            // btn_export
+            // 
+            this.btn_export.Location = new System.Drawing.Point(407, 369);
+            this.btn_export.Name = "btn_export";
+            this.btn_export.Size = new System.Drawing.Size(75, 23);
+            this.btn_export.TabIndex = 11;
+            this.btn_export.Text = "Export CSV";
+            this.btn_export.UseVisualStyleBackColor = true;
             // 
             // MainFrameMDIParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1183, 496);
+            this.Controls.Add(this.btn_export);
             this.Controls.Add(this.lbl_repository);
             this.Controls.Add(this.lbl_result);
             this.Controls.Add(this.btn_result_compare);
@@ -156,5 +168,7 @@
         public System.Windows.Forms.Label lbl_result;
         public System.Windows.Forms.Label lbl_repository;
         public System.Windows.Forms.DataGridView DGV_Results;
+        public System.Windows.Forms.Button btn_export;
+        public System.Windows.Forms.SaveFileDialog saveFileDialog_export;
     }
 }

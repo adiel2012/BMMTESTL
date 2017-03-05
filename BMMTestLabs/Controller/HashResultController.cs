@@ -37,15 +37,53 @@ namespace BMMTestLabs.Controller
         internal global::BMMTestLabs.Program.Match_result[] compare(HashRepositoryController ctrl_repo)
         {
 
-             HashResultRecord[] data =  repo.getAll();
-             if (data == null)
+             HashResultRecord[] dataresult =  repo.getAll();
+             HashRepositoryRecord[] datarepo =  ctrl_repo.Repo.getAll();
+
+
+             if (dataresult == null)
              {
                  MessageBox.Show("Wrong File Format");
                  return null;
              }
 
-            global::BMMTestLabs.Program.Match_result[] res = new Program.Match_result[data.Length];
-            for (int i = 0; i < data.Length; i++)
+             global::BMMTestLabs.Program.Match_result[] res = new Program.Match_result[dataresult.Length];
+
+
+            for (int i = 0; i < dataresult.Length; i++)
+            {
+                HashResultRecord curr_result = dataresult[i];
+                string cad = curr_result.FileFolderName.Trim(new char[]{' ','\"'});
+                string signaturetype = curr_result.SignatureType.Trim(new char[] { ' ', '\"' });
+                string signature = curr_result.Signature.Trim(new char[] { ' ', '\"' });
+                for (int j = 0; j < datarepo.Length; j++)
+                {
+                    HashRepositoryRecord repo_curr = datarepo[j];
+                    res[i] = Program.Match_result.NO_FILE;
+                    string cad2 = repo_curr.ImageName.Trim(new char[] { ' ', '\"' });
+                    if (cad == cad2)
+                    {
+                        int g = 0;
+
+                        if (valid_hash(signaturetype, signature, repo_curr))
+                        {
+                            res[i] = Program.Match_result.MATCH;
+
+                        }
+                        else
+                        {
+                            res[i] = Program.Match_result.NO_MATCH;
+                        }
+                        break;
+                    }
+                }
+
+
+            }
+
+
+
+           /*  for (int i = 0; i < dataresult.Length; i++)
             {
                 if (i%2==0)
                 {
@@ -57,8 +95,51 @@ namespace BMMTestLabs.Controller
                 }
                 if(i == 3)
                     res[i] = Program.Match_result.NO_FILE;
-            }
+            }*/
             return res;
+        }
+
+        private bool valid_hash(string signaturetype, string signature, HashRepositoryRecord repo_curr)
+        {
+
+            switch (signaturetype)
+            {
+                case "SHA1":
+                {
+                    return repo_curr.Sig1.ToUpper() == signature;
+                    
+                }
+                case "MD5":
+                {
+                    return repo_curr.Sig2.ToUpper() == signature;
+                    ;
+                }
+                case "CRC16":
+                {
+                    return repo_curr.Sig3.ToUpper() == signature;
+                    ;
+                }
+                case "CRC32":
+                {
+                    return repo_curr.Sig4.ToUpper() == signature;
+                    ;
+                }
+                case "HMACSHA1":
+                {
+                    return repo_curr.Sig5.ToUpper() == signature;
+                    ;
+                }
+                default :
+                {
+                    int g = 0;
+                    break;
+                }
+
+            }
+            
+
+
+            return false;
         }
     }
 

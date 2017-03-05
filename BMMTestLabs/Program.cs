@@ -4,11 +4,16 @@ using BMMTestLabs.Model.DAO;
 using BMMTestLabs.View;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BMMTestLabs.Controller;
+using System.Reflection;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace BMMTestLabs
 {
@@ -55,9 +60,46 @@ namespace BMMTestLabs
             {
                 do_compare_hash();
             };
+            mainform.btn_export.Click += delegate(object sender, EventArgs e)
+            {
+                do_exportcsv(mainform.DGV_Results);
+            };
+            mainform.saveFileDialog_export.FileOk += delegate(object sender, CancelEventArgs e)
+            {
+                do_saveFileDialog_export_FileOk(mainform.DGV_Results);
+            };
+
         }
 
-       public enum Match_result
+        private static void do_saveFileDialog_export_FileOk(DataGridView mainformDgvResults)
+        {
+            string filename = mainform.saveFileDialog_export.FileName;
+
+            var sb = new StringBuilder();
+
+            var headers = mainformDgvResults.Columns.Cast<DataGridViewColumn>();
+            sb.AppendLine(string.Join(",", headers.Select(column =>  column.HeaderText ).ToArray()));
+
+            foreach (DataGridViewRow row in mainformDgvResults.Rows)
+            {
+                var cells = row.Cells.Cast<DataGridViewCell>();
+                sb.AppendLine(string.Join(",", cells.Select(cell =>  cell.Value ).ToArray()));
+            }
+            System.IO.StreamWriter file = new System.IO.StreamWriter(filename);
+            file.WriteLine(sb.ToString());
+          
+           
+        }
+    
+        private static void do_exportcsv(DataGridView mainformDgvResults)
+        {
+            mainform.saveFileDialog_export.Filter = "CSV (*.csv)|*.csv";
+            mainform.saveFileDialog_export.ShowDialog();
+
+
+        }
+        
+        public enum Match_result
         {
             MATCH,
             NO_MATCH,
