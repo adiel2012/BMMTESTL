@@ -21,7 +21,9 @@ namespace BMMTestLabs.Model.DAO
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    string[] values = line.Split(',');
+                    if (values.Length != 11)
+                        return null;
                     listA.Add(new HashRepositoryRecord(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10]));
                 }
             }

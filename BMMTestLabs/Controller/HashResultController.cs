@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using BMMTestLabs.Model;
 using BMMTestLabs.View;
 
@@ -22,8 +23,13 @@ namespace BMMTestLabs.Controller
 
         public void Display(string filename)
         {
-
-            parentform.fill_HashResults(repo.getAll());
+            HashResultRecord[] res = repo.getAll();
+            if (res == null)
+            {
+                MessageBox.Show("Wrong File Format");
+                return;
+            }
+            parentform.fill_HashResults(res);
             parentform.lbl_result.Text = filename;
 
         }
@@ -32,6 +38,12 @@ namespace BMMTestLabs.Controller
         {
 
              HashResultRecord[] data =  repo.getAll();
+             if (data == null)
+             {
+                 MessageBox.Show("Wrong File Format");
+                 return null;
+             }
+
             global::BMMTestLabs.Program.Match_result[] res = new Program.Match_result[data.Length];
             for (int i = 0; i < data.Length; i++)
             {

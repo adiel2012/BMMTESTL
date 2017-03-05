@@ -70,20 +70,22 @@ namespace BMMTestLabs
 
             Match_result[] result = ctrl_result.compare(ctrl_repo);
             decorate(mainform.DGV_Results,result);
+            
         }
 
         private static void decorate_white(DataGridView dgv)
         {
 
-            
+            if (mainform.DGV_Results.Columns.Count == 5)
+                mainform.DGV_Results.Columns.RemoveAt(0);
             Color c = Color.White;
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
 
-                
+
                 for (int j = 0; j < 4; j++)
                 {
-                    dgv.Rows[i].Cells[j].Style.BackColor = c;
+                    dgv.Rows[i].Cells[1].Style.BackColor = c;
                 }
             }
 
@@ -92,26 +94,38 @@ namespace BMMTestLabs
 
         private static void decorate(DataGridView dgv, Match_result[] result)
         {
-
+            
             //dgv.Paint += dgv_Paint;
+            if (mainform.DGV_Results.Columns.Count < 5)
+                mainform.DGV_Results.Columns.Add("colmatching", "MATCHING");
             Color c = Color.White;
             for (int i = 0; i < result.Length; i++)
             {
 
-                if(result[i] == Match_result.MATCH)
-                    c= Color.Green;
+                if (result[i] == Match_result.MATCH)
+                {
+                    c = Color.Green;
+                    mainform.DGV_Results.Rows[i].Cells[4].Value = "MATCH";
+
+                }
                 else if (result[i] == Match_result.NO_MATCH)
                 {
                     c = Color.Red;
+                    mainform.DGV_Results.Rows[i].Cells[4].Value = "NO MATCH";
                 }
                 else
                 {
                     c = Color.White;
+                    mainform.DGV_Results.Rows[i].Cells[4].Value = "NO FILE";
                 }
-                for (int j = 0; j < 4; j++)
-                {
-                    dgv.Rows[i].Cells[j].Style.BackColor = c;
-                }
+               // for (int j = 0; j < 5; j++)
+                //{
+                    dgv.Rows[i].Cells[4].Style.BackColor = c;
+                //}
+
+
+
+
             }
     
         }

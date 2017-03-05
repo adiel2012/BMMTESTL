@@ -53,7 +53,7 @@
             // DGV_Repository
             // 
             this.DGV_Repository.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Repository.Location = new System.Drawing.Point(529, 53);
+            this.DGV_Repository.Location = new System.Drawing.Point(653, 53);
             this.DGV_Repository.Name = "DGV_Repository";
             this.DGV_Repository.ReadOnly = true;
             this.DGV_Repository.Size = new System.Drawing.Size(606, 292);
@@ -78,7 +78,7 @@
             // 
             // btn_result_repository
             // 
-            this.btn_result_repository.Location = new System.Drawing.Point(529, 27);
+            this.btn_result_repository.Location = new System.Drawing.Point(653, 24);
             this.btn_result_repository.Name = "btn_result_repository";
             this.btn_result_repository.Size = new System.Drawing.Size(75, 23);
             this.btn_result_repository.TabIndex = 7;
@@ -117,7 +117,7 @@
             this.DGV_Results.Location = new System.Drawing.Point(28, 53);
             this.DGV_Results.Name = "DGV_Results";
             this.DGV_Results.ReadOnly = true;
-            this.DGV_Results.Size = new System.Drawing.Size(471, 292);
+            this.DGV_Results.Size = new System.Drawing.Size(560, 292);
             this.DGV_Results.TabIndex = 3;
             // 
             // MainFrameMDIParent

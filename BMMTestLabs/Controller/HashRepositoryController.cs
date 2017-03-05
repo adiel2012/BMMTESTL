@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BMMTestLabs.Model;
 using BMMTestLabs.Model.Abstractions;
 
 namespace BMMTestLabs.Controller
@@ -20,8 +21,13 @@ namespace BMMTestLabs.Controller
 
         public void Display(string filename)
         {
-
-            parentform.fill_HashRepository(repo.getAll());
+            HashRepositoryRecord[] res = repo.getAll();
+            if (res == null)
+            {
+                System.Windows.Forms.MessageBox.Show("Wrong File Format");
+                return;
+            }
+            parentform.fill_HashRepository(res);
             parentform.lbl_repository.Text = filename;
         }
     }

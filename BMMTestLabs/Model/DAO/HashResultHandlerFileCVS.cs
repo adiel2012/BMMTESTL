@@ -23,6 +23,8 @@ namespace BMMTestLabs.Model.DAO
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
+                    if (values.Length != 4)
+                        return null;
                     listA.Add(new HashResultRecord(values[0], values[1], values[2], values[3]));
                 }
             }
