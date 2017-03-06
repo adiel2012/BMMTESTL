@@ -75,6 +75,8 @@ namespace BMMTestLabs
         {
             string filename = mainform.saveFileDialog_export.FileName;
 
+            if(File.Exists(filename))
+                File.Delete(filename);
             var sb = new StringBuilder();
 
             var headers = mainformDgvResults.Columns.Cast<DataGridViewColumn>();
@@ -87,8 +89,13 @@ namespace BMMTestLabs
             }
             System.IO.StreamWriter file = new System.IO.StreamWriter(filename);
             file.WriteLine(sb.ToString());
-          
-           
+            file.Close();
+
+
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.EnableRaisingEvents = false;
+            proc.StartInfo.FileName = filename;
+            proc.Start();
         }
     
         private static void do_exportcsv(DataGridView mainformDgvResults)
@@ -112,7 +119,8 @@ namespace BMMTestLabs
 
             Match_result[] result = ctrl_result.compare(ctrl_repo);
             decorate(mainform.DGV_Results,result);
-            
+            mainform.btn_export.Enabled = true;
+
         }
 
         private static void decorate_white(DataGridView dgv)
@@ -196,6 +204,7 @@ namespace BMMTestLabs
 
                 ctrl_result.Display(filename);
                 decorate_white(mainform.DGV_Results);
+                mainform.btn_export.Enabled = false;
             }
         }
 
