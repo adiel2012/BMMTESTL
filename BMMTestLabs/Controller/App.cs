@@ -15,7 +15,7 @@ namespace BMMTestLabs.Controller
     {
 
         private static App __instance = new App();
-
+        //  singleton class
         public static App GetInstance()
         {
             return __instance;
@@ -28,7 +28,9 @@ namespace BMMTestLabs.Controller
 
         public MainFrameMDIParent run()
         {
+            // create the instance of the main form
             mainform = new MainFrameMDIParent();
+            //suscribe the components
             suscribe();
             return mainform;
         }
@@ -38,48 +40,50 @@ namespace BMMTestLabs.Controller
         public  HashRepositoryController ctrl_repo = null;
         public  HashResultController ctrl_result = null;
 
+        // suscribe the events of main form components 
         private  void suscribe()
         {
-
+            // button to load the hash results
             mainform.BtnResultHash.Click += delegate(object sender, EventArgs e)
             {
                 select_result_hash();
                 mainform.BtnResultCompare.Enabled = (ctrl_result != null && ctrl_repo != null);
             };
-
+            // button to load the hash repository
             mainform.BtnResultRepository.Click += delegate(object sender, EventArgs e)
             {
                 select_repository_hash();
                 mainform.BtnResultCompare.Enabled = (ctrl_result != null && ctrl_repo != null);
             };
-
+            // button than validate hash results vs hash repository
             mainform.BtnResultCompare.Click += delegate(object sender, EventArgs e)
             {
                 do_compare_hash();
             };
+            // button that exports the the results of the comparisson to a csv
             mainform.BtnExport.Click += delegate(object sender, EventArgs e)
             {
-                do_exportcsv(mainform.DGvResults);
+                do_exportcsv();
             };
+            //action to do when the filename of the comparisson results is selected by the save dialog
             mainform.saveFileDialog_export.FileOk += delegate(object sender, CancelEventArgs e)
             {
-                do_saveFileDialog_export_FileOk(mainform.DGvResults);
+                do_saveFileDialog_export_FileOk(mainform.saveFileDialog_export.FileName);
             };
 
         }
-
-        private  void do_saveFileDialog_export_FileOk(DataGridView mainformDgvResults)
+        //action to do when the filename of the comparisson results is selected by the save dialog
+        private void do_saveFileDialog_export_FileOk(string filename)
         {
-            string filename = mainform.saveFileDialog_export.FileName;
-
+            
             if (File.Exists(filename))
                 File.Delete(filename);
             var sb = new StringBuilder();
 
-            var headers = mainformDgvResults.Columns.Cast<DataGridViewColumn>();
+            var headers = mainform.DGvResults.Columns.Cast<DataGridViewColumn>();
             sb.AppendLine(string.Join(",", headers.Select(column => column.HeaderText).ToArray()));
 
-            foreach (DataGridViewRow row in mainformDgvResults.Rows)
+            foreach (DataGridViewRow row in mainform.DGvResults.Rows)
             {
                 var cells = row.Cells.Cast<DataGridViewCell>();
                 sb.AppendLine(string.Join(",", cells.Select(cell => cell.Value).ToArray()));
@@ -95,7 +99,7 @@ namespace BMMTestLabs.Controller
             proc.Start();
         }
 
-        private void do_exportcsv(DataGridView mainformDgvResults)
+        private void do_exportcsv()
         {
             mainform.saveFileDialog_export.Filter = "CSV (*.csv)|*.csv";
             mainform.saveFileDialog_export.ShowDialog();

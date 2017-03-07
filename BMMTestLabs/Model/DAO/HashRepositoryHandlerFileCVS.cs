@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace BMMTestLabs.Model.DAO
 {
+    // this class handle the repository csv file
     class HashRepositoryHandlerFileCVS : IHashRepositoryHandler
     {
         private string filename;
+        // load all records from csv file
         public HashRepositoryRecord[] getAll()
         {
             List<HashRepositoryRecord> listA = new List<HashRepositoryRecord>();
@@ -33,7 +35,6 @@ namespace BMMTestLabs.Model.DAO
 
         public HashRepositoryHandlerFileCVS(string filename)
         {
-
             this.filename = filename;
         }
     }

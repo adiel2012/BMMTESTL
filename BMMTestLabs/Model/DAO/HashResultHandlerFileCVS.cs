@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace BMMTestLabs.Model.DAO
 {
-    class HashResultHandlerFileCVS : IHashResultHandler
+    // this class handle the hash results from csv file
+    public class HashResultHandlerFileCVS : IHashResultHandler
     {
         private string filename;
-
+        // obtain all record from the csv file
         public HashResultRecord[] getAll()
         {
             List<HashResultRecord> listA = new List<HashResultRecord>();

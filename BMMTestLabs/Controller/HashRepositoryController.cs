@@ -9,9 +9,12 @@ using BMMTestLabs.View;
 
 namespace BMMTestLabs.Controller
 {
+    // controls the hash repositories
     public class HashRepositoryController
     {
+        // manipulate the source of the hash repository
         public IHashRepositoryHandler Repo { get; private set; }
+        // reference to main form
         public MainFrameMDIParent Parentform { get; private set; }
 
         public HashRepositoryController(IHashRepositoryHandler repo, View.MainFrameMDIParent parentform)
@@ -20,7 +23,8 @@ namespace BMMTestLabs.Controller
             this.Parentform = parentform;
         }
 
-        public void Display(string filename)
+        // display the content of file in the top left grid 
+        public void Display(string source)
         {
             HashRepositoryRecord[] res = Repo.getAll();
             if (res == null)
@@ -29,7 +33,7 @@ namespace BMMTestLabs.Controller
                 return;
             }
             Parentform.fill_HashRepository(res);
-            Parentform.LblRepository.Text = filename;
+            Parentform.LblRepository.Text = source;
         }
     }
 }

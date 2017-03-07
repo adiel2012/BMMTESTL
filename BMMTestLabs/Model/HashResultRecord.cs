@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BMMTestLabs.Model
 {
+    // represent each hash result record
     public class HashResultRecord
     {
         public string Location { get; set; }

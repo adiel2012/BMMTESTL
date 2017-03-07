@@ -23,11 +23,12 @@ namespace BMMTestLabs.View
 
         }
 
-
+        // fill the grid with hash result
         public void fill_HashResults(Model.HashResultRecord[] list)
         {
             dGV_Results.DataSource = list;
         }
+        // fill the grid with hash repository
         public void fill_HashRepository(Model.HashRepositoryRecord[] list)
         {
             dGV_Repository.DataSource = list;
@@ -57,11 +58,9 @@ namespace BMMTestLabs.View
             return null;
         }
 
-        private void MainFrameMDIParent_ResizeEnd(object sender, EventArgs e)
-        {
-            organize_components();
-        }
+        
 
+        // visually organize the components
         void organize_components()
         {
             int gap = 6;
@@ -73,7 +72,6 @@ namespace BMMTestLabs.View
             dGV_Repository.Width = large;
             dGV_Results.Location = new Point(gap,0);
             btn_result_compare.Location = new Point(large+2*gap,panel3.Height / 2 - btn_result_compare.Height/2);
-
             
             dGV_Repository.Location = new Point(large + btn_result_compare.Width+3*gap, 0);
             btn_result_repository.Location = new Point(dGV_Repository.Location.X, btn_result_repository.Location.Y);
@@ -82,17 +80,12 @@ namespace BMMTestLabs.View
             lbl_repository.Location = new Point(btn_result_repository.Location.X, lbl_repository.Location.Y);
         }
 
-      
+        // reorganize the form when it is resized
         private void MainFrameMDIParent_SizeChanged(object sender, EventArgs e)
         {
             organize_components();
         }
-
-        private void btn_export_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #region only for testing
         public void autoclose()
         {
            // throw new NotImplementedException();
@@ -106,5 +99,6 @@ namespace BMMTestLabs.View
         {
            this.Close();
         }
+        #endregion
     }
 }

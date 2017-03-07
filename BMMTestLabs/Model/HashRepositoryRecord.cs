@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BMMTestLabs.Model
 {
+    // represent each hash repository record
     public class HashRepositoryRecord
     {
 
@@ -32,7 +33,7 @@ namespace BMMTestLabs.Model
         public string Sigtype5 { get; set; }
 
         public string Sig5 { get; set; }
-
+        
         public HashRepositoryRecord(string imageName, string sigtype1, string sig1, string sigtype2, string sig2, string sigtype3, string sig3, string sigtype4, string sig4, string sigtype5, string sig5)
         {
             ImageName = imageName;

@@ -8,6 +8,8 @@ using BMMTestLabs.Model.DAO;
 
 namespace BMMTestLabs.DependencyInjection
 {
+    // a dependency injector to provide dependencies
+    //  this is a Singleton class
     class Injector
     {
         private static Injector __instance = null;
@@ -23,11 +25,13 @@ namespace BMMTestLabs.DependencyInjection
             return __instance;
         }
 
-
+        // provide the concretion of IHashRepositoryHandler. In this case from csv
         public IHashRepositoryHandler getIHashRepositoryHandler(string filename)
         {
             return new HashRepositoryHandlerFileCVS(filename);
         }
+
+        // provide the concretion of IHashResultHandler. In this case from csv
         public IHashResultHandler getIHashResultHandler(string filename)
         {
             return new HashResultHandlerFileCVS(filename);

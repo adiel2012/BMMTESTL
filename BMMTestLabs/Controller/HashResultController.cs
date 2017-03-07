@@ -10,9 +10,12 @@ using BMMTestLabs.View;
 
 namespace BMMTestLabs.Controller
 {
+    // controls the hash results
     public class HashResultController
     {
+        // manipulate the source of the hash result
         IHashResultHandler repo;
+        // reference to main form
         View.MainFrameMDIParent parentform;
 
         public HashResultController(IHashResultHandler repo, View.MainFrameMDIParent parentform)
@@ -21,7 +24,8 @@ namespace BMMTestLabs.Controller
             this.parentform = parentform;
         }
 
-        public void Display(string filename)
+        // display the content of file in the top left grid 
+        public void Display(string source)
         {
             HashResultRecord[] res = repo.getAll();
             if (res == null)
@@ -30,13 +34,13 @@ namespace BMMTestLabs.Controller
                 return;
             }
             parentform.fill_HashResults(res);
-            parentform.LblResult.Text = filename;
+            parentform.LblResult.Text = source;
 
         }
 
+        // perform the comparisson between hash results and hash repository
         internal Match_result[] compare(HashRepositoryController ctrl_repo)
         {
-
              HashResultRecord[] dataresult =  repo.getAll();
              HashRepositoryRecord[] datarepo =  ctrl_repo.Repo.getAll();
 
@@ -81,24 +85,9 @@ namespace BMMTestLabs.Controller
 
             }
 
-
-
-           /*  for (int i = 0; i < dataresult.Length; i++)
-            {
-                if (i%2==0)
-                {
-                    res[i] = Program.Match_result.MATCH;
-                }
-                else
-                {
-                    res[i] = Program.Match_result.NO_MATCH;
-                }
-                if(i == 3)
-                    res[i] = Program.Match_result.NO_FILE;
-            }*/
             return res;
         }
-
+        // utility function
         private bool valid_hash(string signaturetype, string signature, HashRepositoryRecord repo_curr)
         {
 
