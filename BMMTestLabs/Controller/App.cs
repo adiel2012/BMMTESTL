@@ -105,31 +105,27 @@ namespace BMMTestLabs.Controller
             mainform.saveFileDialog_export.ShowDialog();
         }
 
+        //invoque the comparation
         private void do_compare_hash()
         {
             Match_result[] result = ctrl_result.compare(ctrl_repo);
+            // modify the left most grid to display the the matching
             decorate(mainform.DGvResults, result);
+            // ready to export
             mainform.BtnExport.Enabled = true;
         }
 
+        // remove the las column with comparisson results
         private void decorate_white(DataGridView dgv)
         {
 
             if (mainform.DGvResults.Columns.Count == 5)
                 mainform.DGvResults.Columns.RemoveAt(0);
-            Color c = Color.White;
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-
-
-                for (int j = 0; j < 4; j++)
-                {
-                    dgv.Rows[i].Cells[1].Style.BackColor = c;
-                }
-            }
+            
 
         }
 
+        // display the comparisson results
         private void decorate(DataGridView dgv, Match_result[] result)
         {
 
