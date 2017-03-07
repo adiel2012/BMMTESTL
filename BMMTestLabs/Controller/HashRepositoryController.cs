@@ -9,7 +9,7 @@ using BMMTestLabs.View;
 
 namespace BMMTestLabs.Controller
 {
-    class HashRepositoryController
+    public class HashRepositoryController
     {
         public IHashRepositoryHandler Repo { get; private set; }
         public MainFrameMDIParent Parentform { get; private set; }
@@ -29,7 +29,7 @@ namespace BMMTestLabs.Controller
                 return;
             }
             Parentform.fill_HashRepository(res);
-            Parentform.lbl_repository.Text = filename;
+            Parentform.LblRepository.Text = filename;
         }
     }
 }

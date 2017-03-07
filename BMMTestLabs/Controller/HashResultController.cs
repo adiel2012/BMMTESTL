@@ -30,11 +30,11 @@ namespace BMMTestLabs.Controller
                 return;
             }
             parentform.fill_HashResults(res);
-            parentform.lbl_result.Text = filename;
+            parentform.LblResult.Text = filename;
 
         }
 
-        internal global::BMMTestLabs.Program.Match_result[] compare(HashRepositoryController ctrl_repo)
+        internal Match_result[] compare(HashRepositoryController ctrl_repo)
         {
 
              HashResultRecord[] dataresult =  repo.getAll();
@@ -47,7 +47,7 @@ namespace BMMTestLabs.Controller
                  return null;
              }
 
-             global::BMMTestLabs.Program.Match_result[] res = new Program.Match_result[dataresult.Length];
+             Match_result[] res = new Match_result[dataresult.Length];
 
 
             for (int i = 0; i < dataresult.Length; i++)
@@ -59,7 +59,7 @@ namespace BMMTestLabs.Controller
                 for (int j = 0; j < datarepo.Length; j++)
                 {
                     HashRepositoryRecord repo_curr = datarepo[j];
-                    res[i] = Program.Match_result.NO_FILE;
+                    res[i] = Match_result.NO_FILE;
                     string cad2 = repo_curr.ImageName.Trim(new char[] { ' ', '\"' });
                     if (cad == cad2)
                     {
@@ -67,12 +67,12 @@ namespace BMMTestLabs.Controller
 
                         if (valid_hash(signaturetype, signature, repo_curr))
                         {
-                            res[i] = Program.Match_result.MATCH;
+                            res[i] = Match_result.MATCH;
 
                         }
                         else
                         {
-                            res[i] = Program.Match_result.NO_MATCH;
+                            res[i] = Match_result.NO_MATCH;
                         }
                         break;
                     }

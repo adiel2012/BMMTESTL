@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\App.cs" />
     <Compile Include="Controller\HashRepositoryController.cs" />
     <Compile Include="Controller\HashResultController.cs" />
+    <Compile Include="DependencyInjection\Injector.cs" />
     <Compile Include="Model\Abstractions\IHashRepositoryHandler.cs" />
     <Compile Include="Model\Abstractions\IHashResultHandler.cs" />
     <Compile Include="Model\DAO\HashRepositoryHandlerFileCVS.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\MainFrameMDIParent.resx">
       <DependentUpon>MainFrameMDIParent.cs</DependentUpon>
@@ -85,7 +88,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ico\save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\640498_email_512x512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\csv_file.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -26,11 +26,11 @@ namespace BMMTestLabs.View
 
         public void fill_HashResults(Model.HashResultRecord[] list)
         {
-            DGV_Results.DataSource = list;
+            dGV_Results.DataSource = list;
         }
         public void fill_HashRepository(Model.HashRepositoryRecord[] list)
         {
-            DGV_Repository.DataSource = list;
+            dGV_Repository.DataSource = list;
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -68,34 +68,43 @@ namespace BMMTestLabs.View
             int large = (panel3.Width - 4 * gap - btn_result_compare.Width) / 2;
             btn_export.Location = new Point(panel3.Width / 2 - btn_export.Width / 2, btn_export.Location.Y);
             
-            DGV_Results.Height =  DGV_Repository.Height = panel3.Height;
-            DGV_Results.Width = large;
-            DGV_Repository.Width = large;
-            DGV_Results.Location = new Point(gap,0);
+            dGV_Results.Height =  dGV_Repository.Height = panel3.Height;
+            dGV_Results.Width = large;
+            dGV_Repository.Width = large;
+            dGV_Results.Location = new Point(gap,0);
             btn_result_compare.Location = new Point(large+2*gap,panel3.Height / 2 - btn_result_compare.Height/2);
 
             
-            DGV_Repository.Location = new Point(large + btn_result_compare.Width+3*gap, 0);
-            btn_result_repository.Location = new Point(DGV_Repository.Location.X, btn_result_repository.Location.Y);
+            dGV_Repository.Location = new Point(large + btn_result_compare.Width+3*gap, 0);
+            btn_result_repository.Location = new Point(dGV_Repository.Location.X, btn_result_repository.Location.Y);
 
-            lbl_result.Location = new Point(btn_result_hash.Location.X + btn_result_hash.Width+gap, lbl_result.Location.Y);
-            lbl_repository.Location = new Point(btn_result_repository.Location.X + btn_result_repository.Width + gap, lbl_repository.Location.Y);
+            lbl_result.Location = new Point(btn_result_hash.Location.X, lbl_result.Location.Y);
+            lbl_repository.Location = new Point(btn_result_repository.Location.X, lbl_repository.Location.Y);
         }
 
-        private void MainFrameMDIParent_Load(object sender, EventArgs e)
-        {
-            organize_components();
-        }
-
-        private void MainFrameMDIParent_MaximizedBoundsChanged(object sender, EventArgs e)
-        {
-            organize_components();
-        }
-
+      
         private void MainFrameMDIParent_SizeChanged(object sender, EventArgs e)
         {
             organize_components();
         }
 
+        private void btn_export_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void autoclose()
+        {
+           // throw new NotImplementedException();
+            Timer t = new Timer();
+            t.Interval = 10000;
+            t.Tick += t_Tick;
+            t.Start();
+        }
+
+        void t_Tick(object sender, EventArgs e)
+        {
+           this.Close();
+        }
     }
 }
